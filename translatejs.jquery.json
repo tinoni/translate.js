@@ -1,0 +1,36 @@
+{
+    "name": "translatejs",
+    "title": "translate.js",
+    "description": "A jQuery plugin to translate text in the client side.",
+    "keywords": [
+        "translate",
+        "translation",
+        "localization",
+        "language"
+    ],
+    "version": "0.9.1",
+    "author": {
+        "name": "Manuel Fernandes",
+        "url": "https://github.com/tinoni"
+    },
+    "maintainers": [
+        {
+            "name": "Manuel Fernandes",
+            "email": "mfernandes777@gmail.com",
+            "url": "https://github.com/tinoni"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/tinoni/translate.js/blob/master/LICENSE"
+        }
+    ],
+    "bugs": "https://github.com/tinoni/translate.js/issues",
+    "homepage": "http://www.openxrest.com/translatejs/",
+    "docs": "http://www.openxrest.com/translatejs/",
+    "download": "https://github.com/tinoni/translate.js",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}
