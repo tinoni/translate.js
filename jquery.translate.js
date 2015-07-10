@@ -60,8 +60,6 @@
     };
 
     this.g = this.get;
-
-
     
     //main
     this.find(settings.css).each(function(i) {
@@ -72,14 +70,17 @@
         trn_key = $this.html();
         $this.attr("data-trn-key", trn_key);   //store key for next time
       }
-
-      $this.html(that.get(trn_key));
+      
+      //Translate placeholder
+      if($this.attr("placeholder") != undefined){
+        trn_key = $this.attr("placeholder");
+        $this.attr("placeholder", that.get(trn_key));
+      }else{
+        $this.html(that.get(trn_key));
+      }
     });
     
+    return this;
     
-		return this;
-		
-		
-
   };
 })(jQuery);
