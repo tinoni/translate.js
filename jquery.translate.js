@@ -19,7 +19,9 @@
         var settings = {
             css: "trn",
             attrs: ["alt", "placeholder", "title"],
-            lang: "en"/*,
+            checkImage: true, // Checking images
+            lang: "pt",
+            langDefault: "pt"/*,
             t: {
                 "translate": {
                     pt: "tradução",
@@ -72,6 +74,7 @@
                 $this.attr("data-trn-key", trn_key);
             }
 
+            // Filtering attr
             $.each(this.attributes, function() {
                 if ($.inArray(this.name, settings.attrs) !== -1) {
                     var trn_attr_key = $this.attr("data-trn-attr");
@@ -82,6 +85,23 @@
                     $this.attr(this.name, that.get(trn_attr_key));
                 }
             });
+
+            // images
+            if(settings.checkImage){
+                if($this.is('img')){
+                    var trn_img_key = $this.attr("data-trn-img");
+
+                    if (!trn_img_key) {
+                        trn_img_key = $this.attr('src');
+                        $this.attr("data-trn-img", trn_img_key);
+                    }
+                    if(settings.lang !== settings.langDefault){
+                        var new_src = trn_img_key.split(".");
+                        trn_img_key = new_src[0] + "-" + settings.lang + "." + new_src[1];
+                    }
+                    $this.attr('src', trn_img_key);
+                }
+            }
 
             $this.html(that.get(trn_key));
         });
