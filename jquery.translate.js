@@ -7,7 +7,9 @@
  * @license MIT license <http://www.opensource.org/licenses/MIT>
  *
  * translate.js is a jQuery plugin to translate text in the client side.
- *
+ * Added input and textarea placeholder support
+ * @author Hakan Torun 
+ * @site hakan.io
  */
 
 (function($){
@@ -68,12 +70,23 @@
       var $this = $(this);
 
       var trn_key = $this.attr("data-trn-key");
-      if (!trn_key) {
-        trn_key = $this.html();
-        $this.attr("data-trn-key", trn_key);   //store key for next time
+      
+      if($this.is('input') || $this.is('textarea')){
+
+        if (!trn_key) {
+          trn_key = $this.attr("placeholder");
+          $this.attr("data-trn-key", trn_key);   //store key for next time
+        }
+        $this.attr("placeholder",that.get(trn_key));
+      }
+      else{
+        if (!trn_key) {
+          trn_key = $this.html();
+          $this.attr("data-trn-key", trn_key);   //store key for next time
+        }
+        $this.html(that.get(trn_key)); 
       }
 
-      $this.html(that.get(trn_key));
     });
     
     
