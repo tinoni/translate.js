@@ -70,6 +70,7 @@
       var trn_key = $this.attr("data-trn-key");
       if (!trn_key) {
         trn_key = $this.html();
+        trn_key = trn_key.trim();
         $this.attr("data-trn-key", trn_key);   //store key for next time
       }
 
