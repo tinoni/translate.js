@@ -3,9 +3,6 @@ translate.js
 
 A jQuery plugin to translate text in the client side.
 
-## Home and demo
-View a live [demo](http://www.openxrest.com/translatejs/index.html).
-
 ## Usage
 Step 1: include JQuery and translate.js in your page
 
