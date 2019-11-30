@@ -13,6 +13,12 @@ Step 2: every text you want translated include the trn class
 
     <span class="trn">text to translate</span>
 
+Step 2.1 Input and textarea placeholder translated include the trn class
+
+    <input type="text" class="trn" placeholder="text to translate" />
+    
+    <textarea class="trn" placeholder="text to translate"></textarea>
+
 Step 3: create your dictionary
 
     var dict = {
