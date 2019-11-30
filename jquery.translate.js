@@ -17,18 +17,17 @@
 	
     var settings = {
       css: "trn",
-      lang: "en"/*,
-      t: {
-        "translate": {
-          pt: "tradução",
-          br: "tradução"
-        }
-      }*/
+      tag: "trn",
+      css_attr: "trn-attr",
+      lang: "en",
+      debug: false,
     };
     settings = $.extend(settings, options || {});
     if (settings.css.lastIndexOf(".", 0) !== 0)   //doesn't start with '.'
       settings.css = "." + settings.css;
-       
+    if (settings.css_attr.lastIndexOf(".", 0) !== 0)   //doesn't start with '.'
+      settings.css_attr = "." + settings.css_attr;
+
     var t = settings.t;
  
     //public methods
@@ -50,6 +49,9 @@
       }
       catch (err) {
         //not found, return index
+        if (settings.debug) {
+          console.log("No '" + settings.lang + "' translation for '" + index + "'");
+        }
         return index;
       }
       
@@ -64,6 +66,17 @@
 
     
     //main
+    this.find(settings.tag).each(function(i) {
+      var $this = $(this);
+
+      var trn_key = $this.attr("data-trn-key");
+      if (!trn_key) {
+        trn_key = $this.html();
+        $this.attr("data-trn-key", trn_key);   //store key for next time
+      }
+
+      $this.html(that.get(trn_key));
+    });
     this.find(settings.css).each(function(i) {
       var $this = $(this);
 
@@ -75,7 +88,23 @@
 
       $this.html(that.get(trn_key));
     });
-    
+    this.find(settings.css_attr).each(function(i) {
+      var $this = $(this);
+
+      var trn_attr_names = $this.attr("data-trn-attr");
+      trn_attr_names = trn_attr_names.split(" ");
+      // for each attribute
+      for (i = 0; i < trn_attr_names.length; i++) {
+        trn_attr_name = trn_attr_names[i];
+        var trn_key = $this.attr("data-trn-key-" + trn_attr_name);
+        if (!trn_key) {
+          trn_key = $this.attr(trn_attr_name);
+          $this.attr("data-trn-key-" + trn_attr_name, trn_key);   //store key for next time
+        }
+        $this.attr(trn_attr_name, that.get(trn_key));
+      }
+    });
+
     
 		return this;
 		
